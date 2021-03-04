@@ -18,7 +18,7 @@ const typeDefs = gql`
     id: ID
     landings: Int
     missions: [CapsuleMission]
-    original_launch: Date @date(format: "mmmm d, yyyy")
+    original_launch: Date @date(format: "HH:MM")
     reuse_count: Int
     status: String
     type: String
