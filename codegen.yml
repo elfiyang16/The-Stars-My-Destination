@@ -1,0 +1,9 @@
+overwrite: true
+schema: "https://api.spacex.land/graphql"
+generates:
+  server/generated/graphql.ts:
+    plugins:
+      - typescript
+    config:
+      addUnderscoreToArgsType: true
+
