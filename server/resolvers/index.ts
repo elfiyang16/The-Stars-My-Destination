@@ -12,5 +12,17 @@ export const resolvers = {
       const capsule = await dataSources.spaceXAPI.getCapsuleById(id);
       return capsule;
     },
+    missions: async (_, args, { dataSources }): Promise<any> => {
+      const missions = await dataSources.spaceXAPI.getMissions({ ...args });
+      return missions;
+    },
+    mission: async (
+      _,
+      { id }: { id: string },
+      { dataSources }
+    ): Promise<any> => {
+      const mission = await dataSources.spaceXAPI.getMissionById(id);
+      return mission;
+    },
   },
 };
