@@ -7,10 +7,13 @@ import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
 import { DateFormatDirective } from "./directives";
+import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 
 dotenv.config();
 
 const app = express();
+app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
+
 const port = process.env.PORT || "6688";
 
 const server = new ApolloServer({
