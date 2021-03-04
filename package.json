@@ -1,0 +1,52 @@
+{
+  "name": "stars-my-destiny",
+  "version": "1.0.0",
+  "description": "_ふたりは長椅子にならんですわり、透過壁ごしに星の大海をながめやった。いままで彼らが渡ってきた海であり、これから彼らが征こうとする海であった。星々はきらめき、波だち、沸騰するエネルギーの無音の潮騒を、ラインハルトの意識野に投げかけてくる。_",
+  "main": "./server/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -L ./ --exec  ts-node ./tsconfig.json ./server/server.ts",
+    "generate": "graphql-codegen --config codegen.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elfiyang16/The-Stars-My-Destination.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elfiyang16/The-Stars-My-Destination/issues"
+  },
+  "homepage": "https://github.com/elfiyang16/The-Stars-My-Destination#readme",
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^14.0.26",
+    "apollo-datasource": "^0.7.2",
+    "apollo-datasource-rest": "^0.9.5",
+    "apollo-server": "^2.16.1",
+    "apollo-server-express": "^2.16.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.3.0",
+    "graphql-scalars": "^1.2.7",
+    "graphql-tag": "^2.11.0",
+    "lodash": "^4.17.19",
+    "typescript": "^3.9.7",
+    "dateformat": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.10.2",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "@graphql-codegen/cli": "^1.17.7",
+    "@graphql-codegen/typescript": "^1.17.7"
+  }
+}
