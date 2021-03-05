@@ -24,5 +24,17 @@ export const resolvers = {
       const mission = await dataSources.spaceXAPI.getMissionById(id);
       return mission;
     },
+    dragons: async (_, args, { dataSources }): Promise<any> => {
+      const dragons = await dataSources.spaceXAPI.getDragons({ ...args });
+      return dragons;
+    },
+    dragon: async (
+      _,
+      { id }: { id: string },
+      { dataSources }
+    ): Promise<any> => {
+      const dragon = await dataSources.spaceXAPI.getDragonById(id);
+      return dragon;
+    },
   },
 };
