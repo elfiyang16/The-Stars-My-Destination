@@ -6,7 +6,7 @@ import { ApolloServer } from "apollo-server-express";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
-import { DateFormatDirective } from "./directives";
+import { schemaDirectives } from "./directives";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 
 dotenv.config();
@@ -26,9 +26,7 @@ const server = new ApolloServer({
   dataSources: () => ({
     spaceXAPI: new SpaceXAPI(),
   }),
-  schemaDirectives: {
-    date: DateFormatDirective,
-  },
+  schemaDirectives,
 });
 
 app.set("port", port);

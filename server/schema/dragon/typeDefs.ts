@@ -20,7 +20,7 @@ const typeDefs = gql`
     id: ID
     launch_payload_mass: Mass
     launch_payload_vol: Volume
-    name: String
+    name: String @upperCase
     orbit_duration_yr: Int
     return_payload_mass: Mass
     return_payload_vol: Volume
