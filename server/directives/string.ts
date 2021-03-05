@@ -47,7 +47,6 @@ const StringDirectiveFactory = (
       const { resolve = defaultFieldResolver } = field;
       field.resolve = async function (...args) {
         const result = await resolve.apply(this, args);
-        console.log(typeof result);
         if (typeof result === "string") {
           return transform(result);
         }

@@ -1,4 +1,4 @@
-import {DateFormatDirective} from "./date"
+import { DateFormatDirective } from "./date";
 import {
   UpperStringDirective,
   LowerStringDirective,
@@ -9,11 +9,16 @@ import {
   TrimStringDirective,
   SnakeCaseStringDirective,
 } from "./string";
-
+import {
+  MaxLengthDirective,
+  MinLengthDirective,
+  GreaterThanDirective,
+  LessThanDirective,
+} from "./limit";
 
 export const schemaDirectives = {
   date: DateFormatDirective,
-  //•
+  //•string
   upperCase: UpperStringDirective,
   lowerCase: LowerStringDirective,
   camelCase: CamelCaseStringDirective,
@@ -22,5 +27,9 @@ export const schemaDirectives = {
   kebabCase: KebabCaseStringDirective,
   snakeCase: SnakeCaseStringDirective,
   trim: TrimStringDirective,
-}
-
+  //*number|string -limit
+  greater: GreaterThanDirective,
+  less: LessThanDirective,
+  max: MaxLengthDirective,
+  min: MinLengthDirective,
+};

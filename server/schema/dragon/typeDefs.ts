@@ -8,9 +8,10 @@ const typeDefs = gql`
   extend type Capsule {
     dragon: Dragon
   }
+
   type Dragon {
     active: Boolean
-    crew_capacity: Int
+    crew_capacity: Int @greater(limit: -1)
     description: String
     diameter: Distance
     dry_mass_kg: Int

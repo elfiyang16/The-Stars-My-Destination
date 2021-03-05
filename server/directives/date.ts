@@ -28,9 +28,8 @@ export class DateFormatDirective extends SchemaDirectiveVisitor {
     field.resolve = async function (...args) {
       //return  value of the resolver function
       const date = await resolve.apply(this, args);
-      console.log(date)
-      // ARGS:
-      //[{ id: 'C104', //ROOT
+      // ARGS: e.g. on original_launch:
+      //[{ id: 'C104', //PARENT
       //   landings: 1,
       //   missions: [ [Object] ],
       //   original_launch: '2013-03-01T19:10:00.000Z',
