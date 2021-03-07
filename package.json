@@ -4,7 +4,8 @@
   "description": "_ふたりは長椅子にならんですわり、透過壁ごしに星の大海をながめやった。いままで彼らが渡ってきた海であり、これから彼らが征こうとする海であった。星々はきらめき、波だち、沸騰するエネルギーの無音の潮騒を、ラインハルトの意識野に投げかけてくる。_",
   "main": "./server/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest -c ./jest.config.ts",
+    "test:watch": "jest -c ./jest.config.ts --watch",
     "dev": "nodemon -L ./ --exec  ts-node ./tsconfig.json ./server/server.ts",
     "generate": "graphql-codegen --config codegen.yml"
   },
@@ -49,6 +50,9 @@
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2",
     "@graphql-codegen/cli": "^1.17.7",
-    "@graphql-codegen/typescript": "^1.17.7"
+    "@graphql-codegen/typescript": "^1.17.7",
+    "@types/jest": "^26.0.13",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0"
   }
 }
