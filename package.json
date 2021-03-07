@@ -16,6 +16,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">= 12 < 14"
+  },
   "bugs": {
     "url": "https://github.com/elfiyang16/The-Stars-My-Destination/issues"
   },

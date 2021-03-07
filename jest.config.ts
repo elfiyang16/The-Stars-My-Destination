@@ -1,5 +1,4 @@
 module.exports = {
-  displayName: `graphql-directives`,
   roots: ["<rootDir>/server"],
   coverageDirectory: `./.coverage/`,
   collectCoverage: false,
