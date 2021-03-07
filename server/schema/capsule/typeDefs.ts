@@ -14,7 +14,7 @@ const typeDefs = gql`
     capsule(id: ID!): Capsule
   }
 
-  type Capsule {
+  type Capsule @uniqueID {
     id: ID
     landings: Int
     missions: [CapsuleMission]

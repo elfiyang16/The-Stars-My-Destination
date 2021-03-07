@@ -8,10 +8,11 @@ const typeDefs = gql`
   extend type Capsule {
     dragon: Dragon
   }
-
-  type Dragon {
+  # This type uses both the Dragons's name and the id field,
+  type Dragon @uniqueID(from: ["name", "id"]) {
     active: Boolean
-    crew_capacity: Int @greater(limit: -1)
+    # TODO: resolve issue https://github.com/ardatan/graphql-tools/issues/842
+    crew_capacity: Int #@greater(limit: -1)
     description: String
     diameter: Distance
     dry_mass_kg: Int
