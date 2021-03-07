@@ -42,7 +42,8 @@
     "graphql-tag": "^2.11.0",
     "graphql-voyager": "^1.0.0-rc.31",
     "lodash": "^4.17.19",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
@@ -56,6 +57,7 @@
     "@graphql-codegen/typescript": "^1.17.7",
     "@types/jest": "^26.0.13",
     "jest": "^26.4.2",
-    "ts-jest": "^26.3.0"
+    "ts-jest": "^26.3.0",
+    "@types/numeral": "^2.0.0"
   }
 }

@@ -97,5 +97,3 @@ export class DateFormatDirective extends SchemaDirectiveVisitor {
     field.type = GraphQLString;
   }
 }
-
-// export default directives;

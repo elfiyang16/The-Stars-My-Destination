@@ -1,5 +1,6 @@
 import { DateFormatDirective } from "./date";
 import { UniqueIdDirective } from "./uid";
+import { NumberFormatDirective } from "./number";
 import {
   UpperStringDirective,
   LowerStringDirective,
@@ -35,4 +36,6 @@ export const schemaDirectives = {
   min: MinLengthDirective,
   // *new field
   uniqueID: UniqueIdDirective,
+  // *number
+  number: NumberFormatDirective,
 };
