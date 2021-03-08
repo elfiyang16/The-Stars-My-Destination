@@ -18,6 +18,8 @@ export class SpaceXAPI extends RESTDataSource {
 
   async getCapsules(): Promise<Capsule[]> {
     const res = await this.get("/capsules");
+    // for now rest can only fetch id field of dragon
+    // res.dragon.id
     return res;
   }
 
@@ -50,10 +52,11 @@ export class SpaceXAPI extends RESTDataSource {
     limit?: { limit: number };
     offset?: { offset: number };
   }): Promise<Dragon[]> {
-    const {  limit, offset } = args;
+    const { limit, offset } = args;
     const res = await this.get("/dragons", {
       // eslint-disable-next-line @typescript-eslint/ban-types
-      ...(limit as {}),
+      // ...(limit as {}),
+      ...limit,
       ...offset,
     });
     return res;

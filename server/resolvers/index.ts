@@ -41,14 +41,17 @@ export const resolvers = {
   },
   Capsule: {
     /* overwrite the default dragon field implementation since default rest only return id field of dragon */
-    dragon: async (_, args, { dataSources }): Promise<any> => {
+    dragon: async (_, args, { dataSources, getDataLoader }): Promise<any> => {
       console.log(`fetch dragon ${_.id}`);
-      const dragons = await dataSources.spaceXAPI.getDragons({ ...args });
-      const dragonInCapsule = find(
-        dragons,
-        (dragon) => dragon.id === _.dragon.id
-      );
-      return dragonInCapsule;
+      // const dragons = await dataSources.spaceXAPI.getDragons({ ...args });
+      // const dragonInCapsule = find(
+      //   dragons,
+      //   (dragon) => dragon.id === _.dragon.id
+      // );
+      // return dragonInCapsule;
+
+      const dragonLoader = getDataLoader(dataSources);
+      return dragonLoader.load(_.dragon.id);
     },
   },
 };

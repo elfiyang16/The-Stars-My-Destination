@@ -8,6 +8,7 @@ import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
 import { schemaDirectives } from "./directives";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
+import { getDataLoader } from "./dataLoader";
 
 dotenv.config();
 
@@ -27,6 +28,9 @@ const server = new ApolloServer({
     spaceXAPI: new SpaceXAPI(),
   }),
   schemaDirectives,
+  context: {
+    getDataLoader,
+  },
 });
 
 app.set("port", port);
