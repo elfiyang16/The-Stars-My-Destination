@@ -42,7 +42,6 @@ export const resolvers = {
   Capsule: {
     /* overwrite the default dragon field implementation since default rest only return id field of dragon */
     dragon: async (_, args, { dataSources, getDataLoader }): Promise<any> => {
-      console.log(`fetch dragon ${_.id}`);
       // const dragons = await dataSources.spaceXAPI.getDragons({ ...args });
       // const dragonInCapsule = find(
       //   dragons,

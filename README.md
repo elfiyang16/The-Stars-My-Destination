@@ -11,5 +11,6 @@ Playground GraphQL App for SpaceXAPI (https://github.com/SpaceXLand/api).
 - API documentation
 - data loader
 - custom directive
+- log
 - frontend 
 ...

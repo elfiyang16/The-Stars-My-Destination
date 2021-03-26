@@ -3,10 +3,11 @@ import { Dragon } from "../dataSource/interfaces";
 import { GraphQLError } from "graphql";
 import { find } from "lodash";
 
-// this will be a bit weird due to the nature of rest does not support batch
+// this will be a bit weird due to the nature of rest does not
 
 // dataloader will return error instead of stop execution and bubbling up
-function checkError<T>(value: T | undefined): T {
+// TODO: log error in a logger and always return a value
+function checkError<T>(value: T | undefined): T | never {
   if (typeof value === "undefined") {
     throw new GraphQLError("API returns error");
   }
@@ -33,8 +34,5 @@ const batchLoaderFn = async (
 };
 
 export const getDataLoader = (dataSources) => {
-  return new DataLoader(
-    (keys: string[]) => batchLoaderFn(keys, dataSources),
-    {}
-  );
+  return new DataLoader((keys: string[]) => batchLoaderFn(keys, dataSources));
 };
