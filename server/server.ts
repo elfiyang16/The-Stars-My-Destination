@@ -7,6 +7,7 @@ import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
 import { schemaDirectives } from "./directives";
+import { plugins } from "./plugins";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
 
@@ -31,6 +32,7 @@ const server = new ApolloServer({
   context: {
     getDataLoader,
   },
+  plugins: [...plugins],
 });
 
 app.set("port", port);

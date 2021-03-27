@@ -34,17 +34,18 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "dataloader": "^2.0.0",
     "dateformat": "^4.5.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
+    "graphql-query-complexity": "0.8.0",
     "graphql-scalars": "^1.2.7",
     "graphql-tag": "^2.11.0",
     "graphql-voyager": "^1.0.0-rc.31",
     "lodash": "^4.17.19",
-    "typescript": "^3.9.7",
     "numeral": "^2.0.6",
-    "dataloader": "^2.0.0"
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
