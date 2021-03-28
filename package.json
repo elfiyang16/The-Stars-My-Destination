@@ -45,7 +45,8 @@
     "graphql-voyager": "^1.0.0-rc.31",
     "lodash": "^4.17.19",
     "numeral": "^2.0.6",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
