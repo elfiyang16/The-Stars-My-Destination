@@ -8,13 +8,13 @@ import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
 import { schemaDirectives } from "./directives";
 import { plugins } from "./plugins";
+import onHealthCheck from "./utils/healthCheck";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
 
 dotenv.config();
 
 const app = express();
-app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 
 const port = process.env.PORT || "6688";
 
@@ -37,7 +37,7 @@ const server = new ApolloServer({
 
 app.set("port", port);
 // app.use(express.json());
-
+app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.get("/", (_req, res) => {
@@ -48,7 +48,7 @@ app.post("/", (_req, res) => {
   res.redirect(308, "/graphql");
 });
 
-//This is just used for health checker
+//This is just used for health checker for express
 app.get("/health", (_req, res) => {
   res.send("Ok");
 });
@@ -56,6 +56,7 @@ app.get("/health", (_req, res) => {
 // or app.use(server.getMiddleware({}))
 server.applyMiddleware({
   app,
+  onHealthCheck,
 });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
