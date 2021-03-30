@@ -12,7 +12,7 @@ import onHealthCheck from "./utils/healthCheck";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
 import cors from "./middleware/cors";
-
+import redisCache from "./utils/redis";
 dotenv.config();
 
 const app = express();
@@ -34,6 +34,12 @@ const server = new ApolloServer({
     getDataLoader,
   },
   plugins: [...plugins],
+  cacheControl: {
+    defaultMaxAge: 10,
+    stripFormattedExtensions: false,
+    calculateHttpHeaders: false,
+  },
+  // cache: redisCache,
 });
 
 app.set("port", port);
