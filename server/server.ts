@@ -11,6 +11,7 @@ import { plugins } from "./plugins";
 import onHealthCheck from "./utils/healthCheck";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
+import cors from "./middleware/cors";
 
 dotenv.config();
 
@@ -21,10 +22,10 @@ const port = process.env.PORT || "6688";
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // context: async ({ req, res }) => ({
-  //   req,
-  //   res,
-  // }),
+  // context: async ({ req, res }) => {
+  //   console.log("REQN", req);
+  //   res;
+  // },
   dataSources: () => ({
     spaceXAPI: new SpaceXAPI(),
   }),
@@ -37,6 +38,7 @@ const server = new ApolloServer({
 
 app.set("port", port);
 // app.use(express.json());
+app.use(cors);
 app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
