@@ -15,7 +15,9 @@ import { getDataLoader } from "./dataLoader";
 import cors from "./middleware/cors";
 import { PLAY_GROUND_SETTINGS } from "./utils/generics";
 import redisCache from "./utils/redis";
+import formatError from "./utils/formatError";
 import { Logger, LOG_TYPE } from "./utils/logger";
+
 dotenv.config();
 
 const app = express();
@@ -55,6 +57,7 @@ const server = new ApolloServer({
       operation: op?.operation, // the same thing just to demo, e.g. operation: "query"
     };
   },
+  formatError,
   // cache: redisCache,
 });
 
