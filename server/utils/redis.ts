@@ -1,5 +1,6 @@
 import { RedisCache } from "apollo-server-cache-redis";
 
+// currently RangeError: “port” argument must be >= 0 and < 65536
 export const redisCache = new RedisCache({
   connectTimeout: 5000,
   reconnectOnError: (err) => {

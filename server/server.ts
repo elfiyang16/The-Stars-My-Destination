@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import http from "http";
 import { ApolloServer } from "apollo-server-express";
+import { DocumentNode, getOperationAST } from "graphql";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { SpaceXAPI } from "./dataSource/spaceX";
@@ -12,10 +13,13 @@ import onHealthCheck from "./utils/healthCheck";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
 import cors from "./middleware/cors";
+import { PLAY_GROUND_SETTINGS } from "./utils/generics";
 import redisCache from "./utils/redis";
+import { Logger, LOG_TYPE } from "./utils/logger";
 dotenv.config();
 
 const app = express();
+const logger = new Logger();
 
 const port = process.env.PORT || "6688";
 
@@ -38,6 +42,18 @@ const server = new ApolloServer({
     defaultMaxAge: 10,
     stripFormattedExtensions: false,
     calculateHttpHeaders: false,
+  },
+  playground: {
+    settings: PLAY_GROUND_SETTINGS,
+  },
+  // A value or function called with the parsed Document AST
+  // creating the root value passed to the GraphQL executor.
+  // rootValue?: ((parsedQuery: DocumentNode) => TRootValue) | TRootValue;
+  rootValue: (documentAST: DocumentNode) => {
+    const op = getOperationAST(documentAST);
+    return {
+      operation: op?.operation, // the same thing just to demo, e.g. operation: "query"
+    };
   },
   // cache: redisCache,
 });
