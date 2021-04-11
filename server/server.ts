@@ -12,7 +12,7 @@ import { plugins } from "./plugins";
 import onHealthCheck from "./utils/healthCheck";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import { getDataLoader } from "./dataLoader";
-import cors from "./middleware/cors";
+// import cors from "./middleware/cors";
 import { PLAY_GROUND_SETTINGS } from "./utils/generics";
 import redisCache from "./utils/redis";
 import formatError from "./utils/formatError";
@@ -61,9 +61,14 @@ const server = new ApolloServer({
   // cache: redisCache,
 });
 
+const corsOptions = {
+  origin: "http://localhost:5000",
+  credentials: true,
+};
+
 app.set("port", port);
 // app.use(express.json());
-app.use(cors);
+// app.use(cors());
 app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
@@ -84,6 +89,7 @@ app.get("/health", (_req, res) => {
 server.applyMiddleware({
   app,
   onHealthCheck,
+  cors: corsOptions,
 });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
