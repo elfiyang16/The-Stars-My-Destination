@@ -1,10 +1,70 @@
+import { UserInputError } from "apollo-server-errors";
+import { argsToArgsConfig } from "graphql/type/definition";
 import { find } from "lodash";
+import { Capsule } from "../dataSource/interfaces";
+
+const encodeCursor = (id) => {
+  return Buffer.from(id.toString()).toString("base64");
+};
+
+const decodeCursor = (encodedCursor) => {
+  return Buffer.from(encodedCursor, "base64").toString("ascii");
+};
 
 export const resolvers = {
   Query: {
-    capsules: async (_, args, { dataSources }): Promise<any> => {
-      const capsules = await dataSources.spaceXAPI.getCapsules();
-      return capsules;
+    // Relay style pagination
+    capsules: async (
+      _,
+      { first, after }: { first: number; after: string },
+      { dataSources }
+    ): Promise<any> => {
+      const MIN_LIMIT = 1;
+      const MAX_LIMIT = 8;
+      let firstInit = 5;
+      let afterInit = 0;
+
+      const capsules: Capsule[] = await dataSources.spaceXAPI.getCapsules();
+
+      // decide the limit
+      if (first !== undefined) {
+        if (first < MIN_LIMIT || first > MAX_LIMIT) {
+          throw new UserInputError(
+            `Invalid limit value (min: ${MIN_LIMIT}, max: ${MAX_LIMIT})`
+          );
+        }
+        firstInit = first;
+      }
+
+      // decide the cursor
+      if (after !== undefined) {
+        const index = capsules.findIndex(
+          (capsule) => capsule.id === decodeCursor(after)
+        );
+        if (index === -1) {
+          throw new UserInputError(`Invalid after value: cursor not found.`);
+        }
+        afterInit = index + 1;
+        if (afterInit === capsules.length) {
+          throw new UserInputError(`
+            Invalid after value: no items after provided cursor.
+          `);
+        }
+      }
+
+      const returnCapsules = capsules.slice(afterInit, afterInit + firstInit);
+      const lastCapsule = returnCapsules[returnCapsules.length - 1];
+
+      return {
+        pageInfo: {
+          endCursor: encodeCursor(lastCapsule.id),
+          hasNextPage: afterInit + firstInit < capsules.length,
+        },
+        edges: returnCapsules.map((capsule) => ({
+          cursor: encodeCursor(capsule.id),
+          node: capsule,
+        })),
+      };
     },
     capsule: async (
       _,

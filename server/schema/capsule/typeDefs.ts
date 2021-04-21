@@ -2,15 +2,23 @@ import gql from "graphql-tag";
 const typeDefs = gql`
   scalar Date
 
-  type Query {
-    capsules(
-      find: CapsulesFind
-      limit: Int
-      offset: Int
-      order: String
-      sort: String
-    ): [Capsule]
+  type Edge {
+    cursor: String
+    node: Capsule
+  }
 
+  type PageInfo {
+    endCursor: String
+    hasNextPage: Boolean
+  }
+
+  type CapsulesResponse {
+    edges: [Edge]
+    pageInfo: PageInfo
+  }
+
+  type Query {
+    capsules(first: Int, after: String): CapsulesResponse
     capsule(id: ID!): Capsule
   }
 
