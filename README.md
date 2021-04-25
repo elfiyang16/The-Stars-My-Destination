@@ -12,6 +12,7 @@ Feel free to the check the frontend part of this project at (https://github.com/
 
 ##### List of Features
 
+- [x] Schema & resolvers: basics (pagination)
 - [x] Data source: RestAPI
 - [x] Directives: date, uuid, number, string, limit
 - [x] Custom scalar:limit
