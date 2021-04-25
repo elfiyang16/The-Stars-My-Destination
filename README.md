@@ -21,3 +21,7 @@ Feel free to the check the frontend part of this project at (https://github.com/
 - [x] Middleware with Express
 - [x] Other configs: cache with Redis, formatErrorResponse, etc.
 - [x] Test: jest
+
+##### Set up and Run
+
+The project is developed on node (>=12 < 14) with TypeScript (3.9)using `apollo-server-express` but it can be rewritten with pure `apollo-server` package.
